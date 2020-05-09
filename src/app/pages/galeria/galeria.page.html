@@ -1,0 +1,53 @@
+<app-header></app-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>         
+        <img  slot="start" width="10%" left="90px" src="assets/iconos_productos/papa_icon.png"/>
+        <ion-label>Papa</ion-label>
+        <ion-toggle [(ngModel)]="papa_true" color="success"></ion-toggle>
+    </ion-item>
+
+    <ion-grid *ngIf = "papa_true">
+      <ion-row>
+        <ion-col  size="6" *ngFor = "let fotos_papa of imagenes_papa ; index as i ">
+          <img class="galeria" src="{{fotos_papa}}" (click)="verImagen(i)"/>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-item>
+      <img slot="start" width="10%" src="assets/iconos_productos/sandia_icon.png"/>
+      <ion-label>Sandia</ion-label>
+      <ion-toggle [(ngModel)]="sandia_true" color="success"></ion-toggle>
+    </ion-item>
+  
+    <ion-item>
+      <img slot="start" width="10%" src="assets/iconos_productos/melon_icon.png"/>
+      <ion-label>Melón</ion-label>
+      <ion-toggle [(ngModel)]="melon_true" color="success"></ion-toggle>
+    </ion-item>
+
+    <ion-item>
+      <img slot="start" width="10%" src="assets/iconos_productos/naranja_icon.png"/>
+      <ion-label>Naranja</ion-label>
+      <ion-toggle [(ngModel)]="naranja_true" color="success"></ion-toggle>
+    </ion-item>
+
+    <ion-item>
+      <img slot="start" width="10%" src="assets/iconos_productos/frijoles_icon.png"/>
+      <ion-label>Frijol</ion-label>
+      <ion-toggle  [(ngModel)]="frijol_true" color="success"></ion-toggle>
+    </ion-item>
+
+    <ion-item>
+      <img slot="start" width="10%" src="assets/iconos_productos/elote_icon.png"/>
+      <ion-label>Maiz</ion-label>
+      <ion-toggle [(ngModel)]="maiz_true" color="success"></ion-toggle>
+    </ion-item>
+
+  </ion-list>
+</ion-content>
+
+<app-footer></app-footer>
+
