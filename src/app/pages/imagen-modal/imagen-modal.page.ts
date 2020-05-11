@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewChild, ViewChildren} from '@angular/core';
-import {ModalController, NavParams , IonSlides} from '@ionic/angular';
-import {LoadingController} from '@ionic/angular';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { ModalController, NavParams, IonSlides } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-imagen-modal',
@@ -9,31 +9,45 @@ import {LoadingController} from '@ionic/angular';
 })
 export class ImagenModalPage implements OnInit {
 
-  indice : number;
+  img: any;
 
-  @ViewChild("slides",{static: true}) slides : IonSlides;
-   
+  @ViewChild('slider', { read: ElementRef, static: false })slider: ElementRef;
+
+  sliderOpts = {
+    slidesPerView: 1.5,
+    centeredSlides: true,
+    spaceBetween: 20,
+    zoom: {
+      maxRatio: 5
+    }
+  };
+  
   imagenes_papa = [
-  'assets/Fotos_Papas/foto1.jpg',
-  'assets/Fotos_Papas/foto2.jpg',
-  'assets/Fotos_Papas/foto3.jpeg',
-  'assets/Fotos_Papas/foto4.jpg',
-]
-  constructor(private modalCtrl : ModalController , private navparams : NavParams) {
-
-    this.indice = this.navparams.get('index')
-    console.log("Indice que recibi:" +this.indice)
-   }
+    'assets/Fotos_Papas/foto1.jpg', 
+    'assets/Fotos_Papas/foto2.jpg',
+    'assets/Fotos_Papas/foto3.jpeg',
+    'assets/Fotos_Papas/foto4.jpg',
+  ]
+  
+  constructor(private modalController: ModalController, private navParams: NavParams) { }
 
   ngOnInit() {
+    this.img = this.navParams.get('img');
 
-    console.log("Indice al cual moverme:"+ this.indice)
-    this.slides.slideTo(this.indice)
   }
 
-  cerrarModal()
-  {
-    console.log("Indice de salida:"+ this.indice)
-    this.modalCtrl.dismiss()
+  zoom(zoomIn: boolean){
+    let zoom = this.slider.nativeElement.swiper.zoom;
+    if (zoomIn){
+      zoom.in();
+    } else {
+      zoom.out();
+    }
   }
+
+  close() {
+    this.modalController.dismiss();
+  }
+
+
 }

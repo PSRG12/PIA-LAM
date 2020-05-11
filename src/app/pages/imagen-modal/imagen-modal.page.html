@@ -1,25 +1,25 @@
-<ion-content fullscrean>
+<ion-content fullscreen>
 
-  <ion-item>
-
-    <ion-button (click) = "cerrarModal()" fill="clear">
-      <ion-icon name ="close"></ion-icon>
+  <ion-item class="close-fake" lines="none" text-center>
+    <ion-button (click)="close()" fill="clear" color="primary">
+      <ion-icon name="close" slot="start"></ion-icon>
     </ion-button>
 
-    <ion-button fill="clear">
-      <ion-icon name ="add-circle-outline"></ion-icon>
+    <ion-button (click)="zoom(true)" fill="clear" color="primary">
+      <ion-icon name="add" slot="start"></ion-icon>
     </ion-button>
 
-    <ion-button fill="clear">
-      <ion-icon name ="remove-circle-outline"></ion-icon>
+    <ion-button (click)="zoom(false)" fill="clear" color="primary">
+      <ion-icon name="remove" slot="start"></ion-icon>
     </ion-button>
 
   </ion-item>
 
-  <ion-slides [options]="options" #slides>
-    <ion-slide *ngFor ="let imagen of imagenes_papa">
-      <img  src = "{{imagen}}"/>
-    </ion-slide>
+  <ion-slides [options]="sliderOpts" #slider>
+    <ion-slide class="swipper-zoom-container">
+      <img src="assets/Fotos_Papas/{{Fotos_Papas}}.jpg"> <!-- No Funciona Si alguien tiene una idea-->
+    </ion-slide>             <!-- Lo que debe hacer es que cuando lo clickes a una de las fotos esta se proyecte pero no proyecta nada-->
   </ion-slides>
-
+  
+  
 </ion-content>
