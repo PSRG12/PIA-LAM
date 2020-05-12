@@ -27,13 +27,13 @@ export class GaleriaPage{
     'assets/Fotos_Sandias/foto4.png',
   ]
 
-  verImagen(index)
+  verImagen(index,img)
   {
-    console.log("a huevo si regrese crack");
     this.modalCtrl.create({
       component : ImagenModalPage,
       componentProps : {
-        index : index
+        index : index,
+        img : img
       }
     }).then(modal => modal.present())
   }

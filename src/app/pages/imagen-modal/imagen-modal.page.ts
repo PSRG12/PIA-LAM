@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChild, ViewChildren} from '@angular/core';
+import { Component, OnInit, ViewChild, ViewChildren, ElementRef} from '@angular/core';
 import {ModalController, NavParams , IonSlides} from '@ionic/angular';
 import {LoadingController} from '@ionic/angular';
+
 
 @Component({
   selector: 'app-imagen-modal',
@@ -10,8 +11,11 @@ import {LoadingController} from '@ionic/angular';
 export class ImagenModalPage implements OnInit {
 
   indice : number;
+  img : any;
+  
 
-  @ViewChild("slides",{static: true}) slides : IonSlides;
+  @ViewChild(IonSlides,{static: true}) slider : IonSlides;
+  //@ViewChild('slider', { read: ElementRef, static: false })slider: IonSlides;
    
   imagenes_papa = [
   'assets/Fotos_Papas/foto1.jpg',
@@ -20,20 +24,21 @@ export class ImagenModalPage implements OnInit {
   'assets/Fotos_Papas/foto4.jpg',
 ]
   constructor(private modalCtrl : ModalController , private navparams : NavParams) {
-
+  
     this.indice = this.navparams.get('index')
-    console.log("Indice que recibi:" +this.indice)
+    console.log("URL DE LA IMAGEN:"+this.imagenes_papa[this.indice]);
    }
 
+  
   ngOnInit() {
 
-    console.log("Indice al cual moverme:"+ this.indice)
-    this.slides.slideTo(this.indice)
+    console.log(this.indice);
+    console.log(this.img)
+    this.slider.slideTo(this.indice)
   }
 
   cerrarModal()
   {
-    console.log("Indice de salida:"+ this.indice)
-    this.modalCtrl.dismiss()
+    this.modalCtrl.dismiss();
   }
 }
